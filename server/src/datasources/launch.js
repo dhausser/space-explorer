@@ -9,7 +9,7 @@ class LaunchAPI extends RESTDataSource {
   async getAllLaunches() {
     const response = await this.get('launches');
     return Array.isArray(response)
-      ? response.map(launch => this.lauchReducer(launch))
+      ? response.map(launch => this.launchReducer(launch))
       : [];
   }
 
@@ -33,7 +33,7 @@ class LaunchAPI extends RESTDataSource {
 
   async getLaunchById({ launchId }) {
     const response = await this.get('launches', { flight_number: launchId });
-    return this.lauchReducer(response[0]);
+    return this.launchReducer(response[0]);
   }
 
   getLaunchesById({ launchIds }) {
