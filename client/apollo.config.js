@@ -1,8 +1,6 @@
 module.exports = {
   client: {
-    service: {
-      name: 'my-graphql-app',
-      url: 'http://localhost:4000/grapahql',
-    },
+    name: 'Space Explorer [web]',
+    service: 'space-explorer',
   },
 };
