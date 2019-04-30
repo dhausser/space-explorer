@@ -1,6 +1,6 @@
-import styled, { css } from 'react-emotion';
-import { Link } from '@reach/router';
-import { colors, unit } from '../styles';
+import styled, { css } from 'react-emotion'
+import { Link } from '@reach/router'
+import { colors, unit } from '../styles'
 
 export const menuItemClassName = css({
   flexGrow: 1,
@@ -17,10 +17,10 @@ export const menuItemClassName = css({
     margin: `0 auto ${unit}px`,
     fill: colors.secondary,
   },
-});
+})
 
 const MenuItem = styled(Link)(menuItemClassName, {
   textDecoration: 'none',
-});
+})
 
-export default MenuItem;
+export default MenuItem

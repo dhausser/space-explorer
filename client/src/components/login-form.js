@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import styled, { css } from 'react-emotion';
-import { size } from 'polished';
+import React, { Component } from 'react'
+import styled, { css } from 'react-emotion'
+import { size } from 'polished'
 
-import Button from './button';
-import space from '../assets/images/space.jpg';
-import { ReactComponent as Logo } from '../assets/logo.svg';
-import { ReactComponent as Curve } from '../assets/curve.svg';
-import { ReactComponent as Rocket } from '../assets/rocket.svg';
-import { colors, unit } from '../styles';
+import Button from './button'
+import space from '../assets/images/space.jpg'
+import { ReactComponent as Logo } from '../assets/logo.svg'
+import { ReactComponent as Curve } from '../assets/curve.svg'
+import { ReactComponent as Rocket } from '../assets/rocket.svg'
+import { colors, unit } from '../styles'
 
 export default class LoginForm extends Component {
-  state = { email: '' };
+  state = { email: '' }
 
   onChange = event => {
-    const email = event.target.value;
-    this.setState(s => ({ email }));
-  };
+    const email = event.target.value
+    this.setState(s => ({ email }))
+  }
 
   onSubmit = event => {
-    event.preventDefault();
-    this.props.login({ variables: { email: this.state.email } });
-  };
+    event.preventDefault()
+    this.props.login({ variables: { email: this.state.email } })
+  }
 
   render() {
     return (
@@ -43,7 +43,7 @@ export default class LoginForm extends Component {
           <Button type="submit">Log in</Button>
         </StyledForm>
       </Container>
-    );
+    )
   }
 }
 
@@ -62,40 +62,40 @@ const Container = styled('div')({
   backgroundImage: `url(${space})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-});
+})
 
 const svgClassName = css({
   display: 'block',
   fill: 'currentColor',
-});
+})
 
 const Header = styled('header')(svgClassName, {
   width: '100%',
   marginBottom: unit * 5,
   padding: unit * 2.5,
   position: 'relative',
-});
+})
 
 const StyledLogo = styled(Logo)(size(56), {
   display: 'block',
   margin: '0 auto',
   position: 'relative',
-});
+})
 
 const StyledCurve = styled(Curve)(size('100%'), {
   fill: colors.primary,
   position: 'absolute',
   top: 0,
   left: 0,
-});
+})
 
 const Heading = styled('h1')({
   margin: `${unit * 3}px 0 ${unit * 6}px`,
-});
+})
 
 const StyledRocket = styled(Rocket)(svgClassName, {
   width: 250,
-});
+})
 
 const StyledForm = styled('form')({
   width: '100%',
@@ -105,7 +105,7 @@ const StyledForm = styled('form')({
   boxShadow: '6px 6px 1px rgba(0, 0, 0, 0.25)',
   color: colors.text,
   backgroundColor: 'white',
-});
+})
 
 const StyledInput = styled('input')({
   width: '100%',
@@ -117,4 +117,4 @@ const StyledInput = styled('input')({
   ':focus': {
     borderColor: colors.primary,
   },
-});
+})

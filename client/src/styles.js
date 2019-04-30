@@ -1,6 +1,6 @@
-import { injectGlobal } from 'react-emotion';
+import { injectGlobal } from 'react-emotion'
 
-export const unit = 8;
+export const unit = 8
 export const colors = {
   primary: '#220a82',
   secondary: '#14cbc4',
@@ -9,7 +9,7 @@ export const colors = {
   grey: '#d8d9e0',
   text: '#343c5a',
   textSecondary: '#747790',
-};
+}
 
 export default () =>
   injectGlobal({
@@ -50,4 +50,4 @@ export default () =>
       textTransform: 'uppercase',
       letterSpacing: 4,
     },
-  });
+  })
