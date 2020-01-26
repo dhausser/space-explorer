@@ -1,15 +1,19 @@
-const { ApolloServer } = require('apollo-server');
+const express = require('express');
+const path = require('path');
+// const bodyParser = require('body-parser');
+const { ApolloServer } = require('apollo-server-express');
 const isEmail = require('isemail');
 const typeDefs = require('./schema');
 const { createStore } = require('./utils');
 const resolvers = require('./resolvers');
-
 const LaunchAPI = require('./datasources/launch');
 const UserAPI = require('./datasources/user');
 
+const PORT = process.env.PORT || 5000;
+const app = express();
 const store = createStore();
 
-const server = new ApolloServer({
+const apollo = new ApolloServer({
   context: async ({ req }) => {
     // simple auth check on every request
     const auth = (req.headers && req.headers.authorization) || '';
@@ -31,6 +35,9 @@ const server = new ApolloServer({
   })
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+app.use(express.static(path.join(__dirname, '../build')));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
+apollo.applyMiddleware({ app });
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

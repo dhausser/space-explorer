@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://space-explorer-dhausser.herokuapp.com/",
   "dependencies": {
     "@reach/router": "^1.2.1",
     "apollo-cache-inmemory": "^1.5.1",
@@ -34,5 +35,6 @@
     "apollo": "^2.5.3",
     "jest-dom": "^2.1.0",
     "react-testing-library": "^5.2.3"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
