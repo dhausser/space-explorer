@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from "react";
+import React, { ChangeEvent, Component, FormEvent } from "react";
 import styled, { css } from "react-emotion";
 import { size } from "polished";
 
@@ -52,7 +52,7 @@ export default class LoginForm extends Component<
             name="email"
             placeholder="Email"
             data-testid="login-input"
-            onChange={(e) => this.onChange(e)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => this.onChange(e)}
           />
           <Button type="submit">Log in</Button>
         </StyledForm>
