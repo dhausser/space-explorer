@@ -11,7 +11,7 @@ on:
 
 defaults:
   run:
-    working-directory: web
+    working-directory: client
 
 jobs:
   build:
