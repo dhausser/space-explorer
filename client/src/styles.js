@@ -1,20 +1,20 @@
-import { injectGlobal } from 'react-emotion'
+import { injectGlobal } from "react-emotion";
 
-export const unit = 8
+export const unit = 8;
 export const colors = {
-  primary: '#220a82',
-  secondary: '#14cbc4',
-  accent: '#e535ab',
-  background: '#f7f8fa',
-  grey: '#d8d9e0',
-  text: '#343c5a',
-  textSecondary: '#747790',
-}
+  primary: "#220a82",
+  secondary: "#14cbc4",
+  accent: "#e535ab",
+  background: "#f7f8fa",
+  grey: "#d8d9e0",
+  text: "#343c5a",
+  textSecondary: "#747790",
+};
 
-export default () =>
+const globalStyles = () =>
   injectGlobal({
-    [['html', 'body']]: {
-      height: '100%',
+    [["html", "body"]]: {
+      height: "100%",
     },
     body: {
       margin: 0,
@@ -23,15 +23,15 @@ export default () =>
       backgroundColor: colors.background,
       color: colors.text,
     },
-    '#root': {
-      display: 'flex',
-      flexDirection: 'column',
-      minHeight: '100%',
+    "#root": {
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100%",
     },
-    '*': {
-      boxSizing: 'border-box',
+    "*": {
+      boxSizing: "border-box",
     },
-    [['h1', 'h2', 'h3', 'h4', 'h5', 'h6']]: {
+    [["h1", "h2", "h3", "h4", "h5", "h6"]]: {
       margin: 0,
       fontWeight: 600,
     },
@@ -47,7 +47,9 @@ export default () =>
     },
     h5: {
       fontSize: 16,
-      textTransform: 'uppercase',
+      textTransform: "uppercase",
       letterSpacing: 4,
     },
-  })
+  });
+
+export default globalStyles;
