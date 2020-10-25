@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://space-explorer-dhausser.herokuapp.com/",
   "dependencies": {
-    "@apollo/react-hooks": "3.0.0",
+    "@apollo/react-hooks": "4.0.0",
     "@reach/router": "^1.2.1",
     "@types/node": "^12.12.14",
     "@types/reach__router": "^1.2.6",
