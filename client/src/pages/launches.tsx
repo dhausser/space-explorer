@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 import { LaunchTile, Header, Button, Loading } from "../components";
 import { RouteComponentProps } from "@reach/router";
@@ -59,7 +59,7 @@ const Launches: React.FC<LaunchesProps> = () => {
           onClick={() =>
             fetchMore({
               variables: {
-                after: data.launches.cursor
+                after: data.launches.cursor,
               },
               updateQuery: (prev, { fetchMoreResult, ...rest }) => {
                 if (!fetchMoreResult) return prev;
@@ -69,11 +69,11 @@ const Launches: React.FC<LaunchesProps> = () => {
                     ...fetchMoreResult.launches,
                     launches: [
                       ...prev.launches.launches,
-                      ...fetchMoreResult.launches.launches
-                    ]
-                  }
+                      ...fetchMoreResult.launches.launches,
+                    ],
+                  },
                 };
-              }
+              },
             })
           }
         >

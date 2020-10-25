@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
-import { ApolloProvider, useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import {
+  ApolloClient,
+  ApolloProvider,
+  useQuery,
+  InMemoryCache,
+  NormalizedCacheObject,
+  HttpLink,
+  gql,
+} from "@apollo/client";
 
 import Pages from "./pages";
 import Login from "./pages/login";
@@ -22,18 +26,19 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     headers: {
       authorization: localStorage.getItem("token"),
       "client-name": "Space Explorer [web]",
-      "client-version": "1.0.0"
-    }
+      "client-version": "1.0.0",
+    },
   }),
   resolvers,
-  typeDefs
+  typeDefs,
 });
 
+// @ts-expect-error
 cache.writeData({
   data: {
     isLoggedIn: !!localStorage.getItem("token"),
-    cartItems: []
-  }
+    cartItems: [],
+  },
 });
 
 /**

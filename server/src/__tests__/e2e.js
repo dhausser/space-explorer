@@ -1,8 +1,8 @@
 // import our production apollo-server instance
-const { server } = require('../');
-const gql = require('graphql-tag');
+const { server } = require("../");
+const gql = require("@apollo/client");
 
-const { startTestServer, toPromise } = require('./__utils');
+const { startTestServer, toPromise } = require("./__utils");
 
 const LAUNCH_LIST_QUERY = gql`
   query myLaunches($pageSize: Int, $after: String) {
@@ -33,7 +33,7 @@ const GET_LAUNCH = gql`
   }
 `;
 
-describe('Server - e2e', () => {
+describe("Server - e2e", () => {
   let stop, graphql;
 
   beforeEach(async () => {
@@ -44,20 +44,20 @@ describe('Server - e2e', () => {
 
   afterEach(() => stop());
 
-  it('gets list of launches', async () => {
+  it("gets list of launches", async () => {
     const res = await toPromise(
       graphql({
         query: LAUNCH_LIST_QUERY,
-        variables: { pageSize: 1, after: '1517949900' },
-      }),
+        variables: { pageSize: 1, after: "1517949900" },
+      })
     );
 
     expect(res).toMatchSnapshot();
   });
 
-  it('gets a single launch', async () => {
+  it("gets a single launch", async () => {
     const res = await toPromise(
-      graphql({ query: GET_LAUNCH, variables: { id: 30 } }),
+      graphql({ query: GET_LAUNCH, variables: { id: 30 } })
     );
 
     expect(res).toMatchSnapshot();

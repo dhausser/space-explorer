@@ -1,6 +1,5 @@
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { useMutation, gql } from "@apollo/client";
 
 import Button from "../components/button";
 import { GET_LAUNCH } from "./cart-item";

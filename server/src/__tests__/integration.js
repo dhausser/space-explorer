@@ -1,13 +1,13 @@
-const { createTestClient } = require('apollo-server-testing');
-const gql = require('graphql-tag');
-const nock = require('nock');
+const { createTestClient } = require("apollo-server-testing");
+const gql = require("@apollo/client");
+const nock = require("nock");
 
-const { constructTestServer } = require('./__utils');
+const { constructTestServer } = require("./__utils");
 
 // the mocked REST API data
-const { mockLaunchResponse } = require('../datasources/__tests__/launch');
+const { mockLaunchResponse } = require("../datasources/__tests__/launch");
 // the mocked SQL DataSource store
-const { mockStore } = require('../datasources/__tests__/user');
+const { mockStore } = require("../datasources/__tests__/user");
 
 const GET_LAUNCHES = gql`
   query launchList($after: String) {
@@ -63,14 +63,14 @@ const BOOK_TRIPS = gql`
   }
 `;
 
-describe('Queries', () => {
-  it('fetches list of launches', async () => {
+describe("Queries", () => {
+  it("fetches list of launches", async () => {
     // create an instance of ApolloServer that mocks out context, while reusing
     // existing dataSources, resolvers, and typeDefs.
     // This function returns the server instance as well as our dataSource
     // instances, so we can overwrite the underlying fetchers
     const { server, launchAPI, userAPI } = constructTestServer({
-      context: () => ({ user: { id: 1, email: 'a@a.a' } }),
+      context: () => ({ user: { id: 1, email: "a@a.a" } }),
     });
 
     // mock the datasources' underlying fetch methods, whether that's a REST
@@ -89,9 +89,9 @@ describe('Queries', () => {
     expect(res).toMatchSnapshot();
   });
 
-  it('fetches single launch', async () => {
+  it("fetches single launch", async () => {
     const { server, launchAPI, userAPI } = constructTestServer({
-      context: () => ({ user: { id: 1, email: 'a@a.a' } }),
+      context: () => ({ user: { id: 1, email: "a@a.a" } }),
     });
 
     launchAPI.get = jest.fn(() => [mockLaunchResponse]);
@@ -106,28 +106,28 @@ describe('Queries', () => {
   });
 });
 
-describe('Mutations', () => {
-  it('returns login token', async () => {
+describe("Mutations", () => {
+  it("returns login token", async () => {
     const { server, launchAPI, userAPI } = constructTestServer({
       context: () => {},
     });
 
     userAPI.store = mockStore;
     userAPI.store.users.findOrCreate.mockReturnValueOnce([
-      { id: 1, email: 'a@a.a' },
+      { id: 1, email: "a@a.a" },
     ]);
 
     const { mutate } = createTestClient(server);
     const res = await mutate({
       mutation: LOGIN,
-      variables: { email: 'a@a.a' },
+      variables: { email: "a@a.a" },
     });
-    expect(res.data.login).toEqual('YUBhLmE=');
+    expect(res.data.login).toEqual("YUBhLmE=");
   });
 
-  it('books trips', async () => {
+  it("books trips", async () => {
     const { server, launchAPI, userAPI } = constructTestServer({
-      context: () => ({ user: { id: 1, email: 'a@a.a' } }),
+      context: () => ({ user: { id: 1, email: "a@a.a" } }),
     });
 
     // mock the underlying fetches
@@ -150,7 +150,7 @@ describe('Mutations', () => {
     const { mutate } = createTestClient(server);
     const res = await mutate({
       mutation: BOOK_TRIPS,
-      variables: { launchIds: ['1', '2'] },
+      variables: { launchIds: ["1", "2"] },
     });
     expect(res).toMatchSnapshot();
   });

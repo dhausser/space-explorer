@@ -1,9 +1,12 @@
 import React from "react";
-import { useApolloClient, useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import {
+  useApolloClient,
+  useMutation,
+  ApolloClient,
+  gql,
+} from "@apollo/client";
 
 import { LoginForm, Loading } from "../components";
-import ApolloClient from "apollo-client";
 import * as LoginTypes from "./__generated__/login";
 
 export const LOGIN_USER = gql`
@@ -20,8 +23,9 @@ export default function Login() {
   >(LOGIN_USER, {
     onCompleted({ login }) {
       localStorage.setItem("token", login as string);
+      // @ts-expect-error
       client.writeData({ data: { isLoggedIn: true } });
-    }
+    },
   });
 
   if (loading) return <Loading />;
