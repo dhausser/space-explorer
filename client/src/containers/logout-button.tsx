@@ -11,6 +11,7 @@ const LogoutButton = () => {
     <StyledButton
       data-testid="logout-button"
       onClick={() => {
+        // @ts-expect-error
         client.writeData({ data: { isLoggedIn: false } });
         localStorage.clear();
       }}
@@ -30,5 +31,5 @@ export default LogoutButton;
 const StyledButton = styled("button")(menuItemClassName, {
   background: "none",
   border: "none",
-  padding: 0
+  padding: 0,
 });
