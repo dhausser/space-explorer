@@ -1,4 +1,4 @@
-const SQL = require('sequelize');
+const SQL = require("sequelize");
 
 module.exports.paginateResults = ({
   after: cursor,
@@ -10,7 +10,7 @@ module.exports.paginateResults = ({
   if (pageSize < 1) return [];
 
   if (!cursor) return results.slice(0, pageSize);
-  const cursorIndex = results.findIndex(item => {
+  const cursorIndex = results.findIndex((item) => {
     // if an item has a `cursor` on it, use that, otherwise try to generate one
     const itemCursor = item.cursor ? item.cursor : getCursor(item);
 
@@ -30,20 +30,20 @@ module.exports.paginateResults = ({
   results.slice(cursorIndex >= 0 ? cursorIndex + 1 : 0, cursorIndex >= 0);
 };
 
-module.exports.createStore = () => {
+module.exports.createStore = (username = "", password = "") => {
   const { Op } = SQL;
   const operatorsAliases = {
     $in: Op.in,
   };
 
-  const db = new SQL('database', 'username', 'password', {
-    dialect: 'sqlite',
-    storage: './store.sqlite',
+  const db = new SQL("database", username, password, {
+    dialect: "sqlite",
+    storage: "./store.sqlite",
     operatorsAliases,
     logging: false,
   });
 
-  const users = db.define('user', {
+  const users = db.define("user", {
     id: {
       type: SQL.INTEGER,
       primaryKey: true,
@@ -55,7 +55,7 @@ module.exports.createStore = () => {
     token: SQL.STRING,
   });
 
-  const trips = db.define('trip', {
+  const trips = db.define("trip", {
     id: {
       type: SQL.INTEGER,
       primaryKey: true,
